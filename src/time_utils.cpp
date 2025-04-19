@@ -45,7 +45,6 @@ auto common::time::SinceAppStart() -> std::string {
 
     std::ostringstream oss;
     oss << std::fixed << std::setprecision(kTimestampPrecision)
-        << static_cast<double>(elapsed_us.count()) / kMicrosecondsPerSecond
-        << "s";
+        << static_cast<double>(elapsed_us.count()) / kMicrosecondsPerSecond;
     return oss.str();
 }

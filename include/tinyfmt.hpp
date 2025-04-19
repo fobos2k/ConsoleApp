@@ -18,6 +18,8 @@
 #include <type_traits>
 #include <utility> // for std::declval
 
+#include "resources/tinyfmt.hpp"
+
 namespace tinyfmt {
 
 inline constexpr int VersionMajor = 0;
@@ -114,8 +116,7 @@ auto Format(const std::string &format, Args &&...args) -> std::string {
     std::size_t num_placeholders = CountPlaceholders(format);
 
     if (num_args != num_placeholders) {
-        throw std::runtime_error("tinyfmt::Format: mismatch between number of "
-                                 "placeholders and number of arguments");
+        throw std::runtime_error(kTinyFmtMismatchError);
     }
 
     std::ostringstream oss;

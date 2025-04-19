@@ -42,7 +42,8 @@ void Logger::Log(LogLevel level, const std::string &message) {
     std::lock_guard<std::mutex> lock(mutex_);
 
     std::ostringstream oss;
-    oss << GetTimeStamp() << " [" << LevelToString(level) << "] " << message;
+    oss << " [" << GetTimeStamp() << "]"
+        << " [" << LevelToString(level) << "] " << message;
 
     std::cout << oss.str() << '\n';
     if (log_file_.is_open()) {

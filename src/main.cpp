@@ -1,5 +1,9 @@
 
+#include "cmdline_parser.hpp"
 #include "logger.hpp"
+#include "resources.hpp"
+#include "settings.hpp"
+
 #include <cstdlib>
 #include <vector>
 
@@ -17,15 +21,16 @@ auto main(int argc, char *argv[]) -> int {
     try {
 
         auto args = ToStringViews(argc, argv);
-        LOG_INFO("argc = {}", argc);
-        LOG_INFO("args = {}", args);
+
+        CmdLineParser parser(args);
+        Settings settings(parser.GetConfigPath());
 
         return EXIT_SUCCESS;
     } catch (const std::exception &e) {
-        LOG_ERROR("Unhandled exception: {}", e.what());
+        LOG_ERROR(resources::kFatalExceptionCaught, e.what());
         return EXIT_FAILURE;
     } catch (...) {
-        LOG_ERROR("Unknown unhandled exception");
+        LOG_ERROR(resources::kUnknownFatalExceptionCaught);
         return EXIT_FAILURE;
     }
 }
