@@ -18,7 +18,7 @@
 #include <type_traits>
 #include <utility> // for std::declval
 
-#include "resources/tinyfmt.hpp"
+#include "resources.hpp"
 
 namespace tinyfmt {
 
@@ -116,7 +116,7 @@ auto Format(const std::string &format, Args &&...args) -> std::string {
     std::size_t num_placeholders = CountPlaceholders(format);
 
     if (num_args != num_placeholders) {
-        throw std::runtime_error(kTinyFmtMismatchError);
+        throw std::runtime_error(resources::tinyfmt::kTinyFmtMismatchError);
     }
 
     std::ostringstream oss;

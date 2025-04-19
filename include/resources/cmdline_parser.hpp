@@ -10,7 +10,7 @@ inline const std::string kConfigCannotBeOpened =
 inline const std::string kConfigNotFound = "Config file not found: ";
 inline const std::string kMissingArgumentConfig =
     "Missing argument for --config";
-inline const std::string kTryingToLoadConfig = "Trying to load config file: {}";
+inline const std::string kUsingConfigFile = "Trying to load config file: {}";
 inline const std::string kUnknownArgument = "Unknown argument: ";
 
 } // namespace cmdline_parser

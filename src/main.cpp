@@ -19,10 +19,10 @@ static auto ToStringViews(int argc, char **argv)
 
 auto main(int argc, char *argv[]) -> int {
     try {
-
         auto args = ToStringViews(argc, argv);
 
         CmdLineParser parser(args);
+
         Settings settings(parser.GetConfigPath());
 
         return EXIT_SUCCESS;

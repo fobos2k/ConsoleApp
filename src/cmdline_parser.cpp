@@ -1,5 +1,5 @@
 #include "cmdline_parser.hpp"
-#include "resources/cmdline_parser.hpp"
+#include "resources.hpp"
 
 #include <filesystem>
 #include <iostream>
@@ -16,7 +16,7 @@ void CmdLineParser::ShowHelpAndExit() {
 }
 
 auto CmdLineParser::GetConfigPath() const -> std::string {
-    LOG_INFO(resources::cmdline_parser::kTryingToLoadConfig, config_path_);
+    LOG_INFO(resources::cmdline_parser::kUsingConfigFile, config_path_);
 
     std::filesystem::path path(config_path_);
 
