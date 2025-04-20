@@ -1,27 +1,31 @@
 cmake_minimum_required(VERSION 3.21)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-project(ConsoleApp)
-
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-set(SOURCE_DIR src)
-set(INCLUDE_DIR include)
-
 find_program(CLANG_BIN clang)
 find_program(CLANGXX_BIN clang++)
+
+message(STATUS "CLANGXX_BIN = ${CLANGXX_BIN}")
 
 if (CLANG_BIN AND CLANGXX_BIN)
     message(STATUS "Found Clang: using clang/clang++")
     set(CMAKE_C_COMPILER "${CLANG_BIN}")
     set(CMAKE_CXX_COMPILER "${CLANGXX_BIN}")
 
+    message(STATUS "CMAKE_CXX_COMPILER = ${CMAKE_CXX_COMPILER}")
+
     set(CMAKE_CXX_CLANG_TIDY clang-tidy)
 else()
     message(WARNING "Clang not found, using default compiler")
 endif()
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+project(ConsoleApp)
+
+set(SOURCE_DIR src)
+set(INCLUDE_DIR include)
 
 set(COMMON_WARNING_FLAGS
     -Wall
@@ -38,6 +42,7 @@ add_executable(${EXECUTABLE_NAME} ${SOURCES})
 
 target_include_directories(${EXECUTABLE_NAME} PUBLIC ${INCLUDE_DIR})
 
+message(STATUS "CMAKE_CXX_COMPILER_ID = ${CMAKE_CXX_COMPILER_ID}")
 if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     message(STATUS "Applying Clang-specific warnings")
     target_compile_options(${EXECUTABLE_NAME} PRIVATE
