@@ -3,11 +3,16 @@
 
 #include <string>
 
-namespace settings {
+namespace resources::settings {
 
-inline const std::string kDefaultConfigFilename = "config.yml";
-
-inline const std::string kUsingConfigFile = "Using config file: {}";
-} // namespace settings
+inline const std::string
+    kDefaultConfigFilename = "config.yml",
+    kCanNotOpenConfigFile = "Cannot open config file: ",
+    kLoadingSettingsFrom = "Loading settings from: {}",
+    kConfigFileNotFound = "Config file '{}' not found, trying default '{}'",
+    kDefaultConfigNotFound =
+        "Neither specified nor default config file found: ",
+    kReadConfigLine = "Read config line: {}";
+} // namespace resources::settings
 
 #endif // CONSOLEAPP_RESOURCES_SETTINGS_HPP

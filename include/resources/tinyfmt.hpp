@@ -3,12 +3,12 @@
 
 #include <string>
 
-namespace tinyfmt {
+namespace resources::tinyfmt {
 
 inline const std::string kTinyFmtMismatchError =
     "tinyfmt::Format: mismatch between number of placeholders and number of "
     "arguments";
 
-} // namespace tinyfmt
+} // namespace resources::tinyfmt
 
 #endif // CONSOLEAPP_RESOURCES_TINYFMT_HPP

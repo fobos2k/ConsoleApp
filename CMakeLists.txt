@@ -1,23 +1,8 @@
 cmake_minimum_required(VERSION 3.21)
 
-find_program(CLANG_BIN clang)
-find_program(CLANGXX_BIN clang++)
+include(cmake/clang.cmake)
 
-message(STATUS "CLANGXX_BIN = ${CLANGXX_BIN}")
-
-if (CLANG_BIN AND CLANGXX_BIN)
-    message(STATUS "Found Clang: using clang/clang++")
-    set(CMAKE_C_COMPILER "${CLANG_BIN}")
-    set(CMAKE_CXX_COMPILER "${CLANGXX_BIN}")
-
-    message(STATUS "CMAKE_CXX_COMPILER = ${CMAKE_CXX_COMPILER}")
-
-    set(CMAKE_CXX_CLANG_TIDY clang-tidy)
-else()
-    message(WARNING "Clang not found, using default compiler")
-endif()
-
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -62,3 +47,8 @@ else()
         ${COMMON_WARNING_FLAGS}
     )
 endif()
+
+if (WIN32)
+    include(cmake/windows_setup.cmake)
+endif()
+
