@@ -4,3 +4,8 @@
 out/
 build/
 .cache/
+tpmstate/
+
+*.iso
+*.fd
+*.qcow2
