@@ -15,7 +15,7 @@ WINDOWS_CUSTOM_ISO="${QEMU_DIR}/Win11_custom.iso"
 AUTO_UNATTEND_ISO="${QEMU_DIR}/autounattend.iso"
 
 
-VM_DISK="${QEMU_DIR}/win11-vm.qcow2"
+VM_DISK="${QEMU_DIR}/win11.qcow2"
 OVMF_VARS="${QEMU_DIR}/OVMF_VARS.fd"
 TPM_SOCKET="/tmp/win11_tpm.sock"
 
@@ -127,7 +127,7 @@ deploy()
         -drive if=pflash,format=raw,file=${OVMF_VARS} \
         -drive file=${VM_DISK},format=qcow2,if=virtio \
         -drive file=${VIRTIO_ISO},media=cdrom,index=3 \
-        -cdrom ${WINDOWS_CUSTOM_ISO} \
+        -cdrom ${WINDOWS_ISO} \
         -chardev socket,id=chrtpm,path=${TPM_SOCKET} \
         -tpmdev emulator,id=tpm0,chardev=chrtpm \
         -device tpm-tis,tpmdev=tpm0 \
@@ -159,7 +159,7 @@ run()
         -drive if=pflash,format=raw,file=${OVMF_VARS} \
         -drive file=${VM_DISK},if=virtio,format=qcow2 \
         -drive file=${VIRTIO_ISO},index=3,media=cdrom \
-        -cdrom "${WINDOWS_CUSTOM_ISO}" \
+        -cdrom "${WINDOWS_ISO}" \
         -boot order=d \
         -chardev socket,id=chrtpm,path=${TPM_SOCKET} \
         -tpmdev emulator,id=tpm0,chardev=chrtpm \
